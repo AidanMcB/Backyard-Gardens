@@ -1,0 +1,18 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable()
+export class WeatherService {
+  constructor(private httpClient: HttpClient) { }
+getWeather() {
+    return this.httpClient
+    .get('https://localhost:44316/weatherforecast')
+  }
+
+//   getEntities(): Observable<Entity[]> {
+//     return this.httpClient.get<Entity[]>(this.apiUrl)     
+// }
+
+}
+
