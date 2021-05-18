@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WeatherService } from './weather.service';
+import { Forecast } from './weather.interface';
 
 @Component({
     selector: 'weather',
@@ -10,16 +11,24 @@ import { WeatherService } from './weather.service';
 export class WeatherComponent {
     title = 'weather';
 
+    public weeklyForecast:Forecast[] = [];
+
     public constructor (
         private _weatherService: WeatherService,
     ) {}
 
-
-    public getWeather(): void {
+    public ngOnInit(): void {
         this._weatherService.getWeather().subscribe( 
-            (weather) => {
-                console.log(weather)
+            (weather: Forecast[]) => {
+                weather.forEach( forecast => {
+                    this.weeklyForecast.push(forecast)
+                })
             }
         )
+    }
+
+
+    public getWeather(): void {
+       console.log(this.weeklyForecast)
     }
 }
