@@ -1,9 +1,18 @@
-.header-div{
-    text-align: center;
+.homepage-wrapper{
+    overflow: auto;
+    height: 100%;
+    background-color: rgb(44, 123, 74);
 }
-
-.header-title{
-    color: forestgreen;
+.home-header-div{
+    background-color: tan;
+    border-radius: 25px;
+    margin:  2% auto 2% auto;
+    border: 1px solid tan;
+    text-align: center;
+    width: 50%;
+        .home-header-title{
+            color: black;
+        }
 }
 
 .carousel{
