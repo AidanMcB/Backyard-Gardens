@@ -1,16 +1,17 @@
-
-<div class='header-div'>
-    <h2 class='header-title'>Backyard Garden</h2>
-</div>
-<carousel 
-    class='carousel'
-    [overflowCellsLimit]='3'
-    [images]='carouselImages'
-    [transitionDuration]='1000'
-    [width]='700'
-    > 
-</carousel>
-<div>
-    <button routerLink='/weather'>Go see the Weather</button>
-    <button routerLink='/login'>Log In</button>
+<div class='homepage-wrapper'>
+    <div class='home-header-div'>
+        <h2 class='home-header-title'>Backyard Garden</h2>
+    </div>
+    <carousel 
+        class='carousel'
+        [overflowCellsLimit]='3'
+        [images]='carouselImages'
+        [transitionDuration]='1000'
+        [width]='700'
+        > 
+    </carousel>
+    <div>
+        <button routerLink='/weather'>Go see the Weather</button>
+        <button routerLink='/login'>Log In</button>
+    </div>
 </div>

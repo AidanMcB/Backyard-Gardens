@@ -20,9 +20,7 @@ export class WeatherComponent {
     public ngOnInit(): void {
         this._weatherService.getWeather().subscribe( 
             (weather: Forecast[]) => {
-                weather.forEach( forecast => {
-                    this.weeklyForecast.push(forecast)
-                })
+                weather.forEach( forecast => this.weeklyForecast.push(forecast))
             }
         )
     }

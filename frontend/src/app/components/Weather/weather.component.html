@@ -1,10 +1,11 @@
 <h1> Weather </h1>
-<button (click)="getWeather()">Get Weather</button>
-<div class='forecast-container'>
-    <div class='forecast-card' *ngFor="let forecast of weeklyForecast">
-        <p>{{forecast.date}}</p>
-        <p>{{forecast.summary}}</p>
-        <p>{{forecast.temperatureCelsius}} C</p>
-        <p>{{forecast.temperatureFarenheit}} F</p>
+<div class='weather-page'>
+    <div class='forecast-container'>
+        <div class='forecast-card' *ngFor="let forecast of weeklyForecast">
+            <p>{{forecast.date | date:short }}</p>
+            <p>{{forecast.summary}}</p>
+            <p>{{forecast.temperatureFarenheit}} &#8457;</p>
+            <p>{{forecast.temperatureCelsius}} &#8451;</p>
+        </div>
     </div>
 </div>

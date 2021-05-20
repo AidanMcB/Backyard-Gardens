@@ -1,0 +1,16 @@
+.weather-page{
+    text-align: center;
+}
+.forecast-container{
+    margin: auto;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 5%;
+}
+.forecast-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    outline: 1px solid black;
+}
