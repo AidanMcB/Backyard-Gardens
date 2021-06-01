@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Serialization;
+using BackyardGarden.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackyardGarden.API
 {
@@ -26,6 +28,9 @@ namespace BackyardGarden.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Passing value for constructor parameter 
+            services.AddDbContext<PaymentDetailContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
             //Enable CORS
             services.AddCors(c =>
             {
