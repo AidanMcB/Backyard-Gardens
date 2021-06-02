@@ -30,6 +30,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     IvyCarouselModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
