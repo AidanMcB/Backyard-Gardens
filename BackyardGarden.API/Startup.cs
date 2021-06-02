@@ -31,6 +31,7 @@ namespace BackyardGarden.API
             // Passing value for constructor parameter 
             services.AddDbContext<PaymentDetailContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+
             //Enable CORS
             services.AddCors(c =>
             {
