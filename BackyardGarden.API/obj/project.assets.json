@@ -767,7 +767,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\aidan\\.nuget\\packages\\": {}
+    "C:\\Users\\aidan\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
@@ -778,6 +779,9 @@
       "packagesPath": "C:\\Users\\aidan\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\aidan\\Desktop\\Angular\\personal-projects\\backyard-garden\\BackyardGarden.API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\aidan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

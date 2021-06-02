@@ -12,18 +12,21 @@ import { LoginComponent } from './components/Login/login.component';
 import { IvyCarouselModule} from 'angular-responsive-carousel'; 
 import { DataService } from './data.service';
 import { WeatherService } from './components/Weather/weather.service';
+import { FarmComponent } from './components/Farm/farm.component';
 
 const routes: Routes = [
   {path: 'homepage', component: HomepageComponent},
   {path: '', redirectTo: '/homepage', pathMatch: 'full'},
   {path: 'weather', component: WeatherComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'farm', component: FarmComponent}
 ];
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    FarmComponent,
     HomepageComponent,
     LoginComponent,
     WeatherComponent,
