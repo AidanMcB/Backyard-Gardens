@@ -4,21 +4,21 @@
     <div class="form-group">
         <label>CARD OWNER NAME</label>
         <input class="form-control form-control-lg" placeholder="Full Name"
-        name="cardOwnerName" [(ngModel)]="service.formData.cardOwnerName">
+        name="cardOwnerName" #cardOwnerName [(ngModel)]="service.formData.cardOwnerName">
     </div>
     <div class="form-group">
         <label>CARD NUMBER</label>
         <input class="form-control form-control-lg" placeholder="16 Digit Card Number"
-        name="cardNumber" [(ngModel)]="service.formData.cardNumber">
+        name="cardNumber" #cardNumber [(ngModel)]="service.formData.cardNumber">
     </div>
     <div class="form-group">
         <label>SECURITY CODE</label>
         <input type="password" class="form-control form-control-lg" placeholder="Security Code"
-        name="securityCode" [(ngModel)]="service.formData.securityCode">
+        name="securityCode" #securityCode [(ngModel)]="service.formData.securityCode">
     </div>
     <div class="form-group">
         <label>VALID THROUGH</label>
         <input class="form-control form-control-lg" placeholder="MM/YY"
-        name="expirationDate" [(ngModel)]="service.formData.expirationDate">
+        name="expirationDate" #expirationDate [(ngModel)]="service.formData.expirationDate">
     </div>
 </form>>

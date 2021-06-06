@@ -12,12 +12,14 @@ import { LoginComponent } from './components/Login/login.component';
 import { IvyCarouselModule} from 'angular-responsive-carousel'; 
 import { DataService } from './data.service';
 import { WeatherService } from './components/Weather/weather.service';
+import { PaymentDetailsComponent } from './components/PaymentDetails/payment-details.component';
 
 const routes: Routes = [
   {path: 'homepage', component: HomepageComponent},
   {path: '', redirectTo: '/homepage', pathMatch: 'full'},
   {path: 'weather', component: WeatherComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'payment-detail', component: PaymentDetailsComponent},
 ];
 
 
