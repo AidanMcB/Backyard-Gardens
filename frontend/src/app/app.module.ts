@@ -13,6 +13,7 @@ import { IvyCarouselModule} from 'angular-responsive-carousel';
 import { DataService } from './data.service';
 import { WeatherService } from './components/Weather/weather.service';
 import { PaymentDetailsComponent } from './components/PaymentDetails/payment-details.component';
+import { PaymentDetailsModule } from './components/PaymentDetails/payment-details.module';
 
 const routes: Routes = [
   {path: 'homepage', component: HomepageComponent},
@@ -33,9 +34,10 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    IvyCarouselModule,
-    RouterModule.forRoot(routes),
     HttpClientModule,
+    IvyCarouselModule,
+    PaymentDetailsModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [
     DataService,

@@ -5,13 +5,13 @@ import { PaymentDetailsFormComponent } from './PaymentDetailsForm/payment-detail
 import { PaymentDetailsComponent } from './payment-details.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-  ],
   declarations: [
       PaymentDetailsFormComponent,
       PaymentDetailsComponent
-    ]
+    ],
+    imports: [
+      CommonModule,
+      FormsModule,
+    ],
 })
-export class PaymentDtailsModu8le { }
+export class PaymentDetailsModule { }

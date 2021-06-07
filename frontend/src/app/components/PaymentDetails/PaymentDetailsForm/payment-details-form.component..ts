@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { PaymentDetailsService } from '../../../shared/payment-details/payment-details.service';
 
 @Component({
-    selector: 'payment-details-form.component',
+    selector: 'payment-details-form',
     templateUrl: './payment-details-form.component.html',
     styleUrls: ['./payment-details-form.component.scss']
 })
@@ -13,6 +13,6 @@ export class PaymentDetailsFormComponent {
         public service: PaymentDetailsService,
     ) {}
 
-    title = 'Psyment Details Form';
+    title = 'Payment Details Form';
 
 }
