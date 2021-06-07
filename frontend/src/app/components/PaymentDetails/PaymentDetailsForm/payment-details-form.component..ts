@@ -15,4 +15,6 @@ export class PaymentDetailsFormComponent {
 
     title = 'Payment Details Form';
 
+    public onSubmit(form: NgForm)
+
 }
