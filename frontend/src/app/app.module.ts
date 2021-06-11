@@ -4,6 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
+
+
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/Homepage/homepage.component';
 import { WeatherComponent} from './components/Weather/weather.component';
@@ -32,11 +37,13 @@ const routes: Routes = [
     WeatherComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
     IvyCarouselModule,
     PaymentDetailsModule,
+    ToastrModule.forRoot(),
     RouterModule.forRoot(routes),
   ],
   providers: [

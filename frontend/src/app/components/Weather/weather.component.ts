@@ -29,4 +29,12 @@ export class WeatherComponent {
     public getWeather(): void {
        console.log(this.weeklyForecast)
     }
+
+    public getGarden(): void {
+        this._weatherService.getGarden().subscribe( 
+            (garden) => {
+             console.log(garden)
+            }
+         )
+    }
 }

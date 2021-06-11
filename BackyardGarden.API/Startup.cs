@@ -52,6 +52,7 @@ namespace BackyardGarden.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -59,9 +60,12 @@ namespace BackyardGarden.API
 
             app.UseHttpsRedirection();
 
+            app.UseCors(options =>
+            options.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
             app.UseRouting();
 
-            app.UseCors();
 
             app.UseAuthorization();
 

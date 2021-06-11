@@ -13,11 +13,11 @@ export class PaymentDetailsService {
     ) {}
 
     formData: PaymentDetail = new PaymentDetail();
-    readonly baseURL = 'http://localhost:5001/paymentDetails';
+    readonly baseURL = 'https://localhost:5001/api/paymentDetails';
 
     
-    public postPaymentDetail(): void{
-        this.http.post(this.baseURL, this.formData)
+    postPaymentDetail(){
+        return this.http.post(this.baseURL, this.formData)
     }
 }
 
