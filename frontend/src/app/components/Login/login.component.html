@@ -1,12 +1,12 @@
 <h2>Login</h2>
-<div class='login-modaal-wrapper'>
-    <form class='login-form'>
+<div class='login-modal-wrapper'>
+    <form class='login-form' [formGroup]='loginForm'>
         <label>Name:</label>
         <input for='name' type='text'>
         <label>Password:</label>
         <input for='password' type='text'>
-        <button type='submit'>Login</button>
+        <button type='submit' (click)="submit($event)">Login</button>
     </form>
 
-    <button (click)="logData()">data button</button>
+    <!-- <button (click)="logData()">data button</button> -->
 </div>
