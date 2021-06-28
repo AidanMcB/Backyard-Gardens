@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 using System.Data;
 using BackyardGarden.API.Models;
+using Microsoft.AspNetCore.Cors;
+
 
 namespace BackyardGarden.API.Controllers
 {
@@ -24,6 +26,7 @@ namespace BackyardGarden.API.Controllers
         }
 
         [HttpGet]
+        [EnableCors("AllowOrigin")]
         public JsonResult Get()
         {
             string query = @"
@@ -48,6 +51,7 @@ namespace BackyardGarden.API.Controllers
         }
 
         [HttpPost]
+        [EnableCors("AllowOrigin")]
         public JsonResult Post(Garden dep)
         {
             string query = @"
@@ -73,6 +77,7 @@ namespace BackyardGarden.API.Controllers
         }
 
         [HttpPut]
+        [EnableCors("AllowOrigin")]
         public JsonResult Put(Garden dep)
         {
             string query = @"
@@ -99,6 +104,7 @@ namespace BackyardGarden.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [EnableCors("AllowOrigin")]
         public JsonResult Delete(int id)
         {
             string query = @"

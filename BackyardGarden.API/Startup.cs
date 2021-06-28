@@ -11,6 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace BackyardGarden.API
 {
@@ -29,8 +32,28 @@ namespace BackyardGarden.API
             //Enable CORS
             services.AddCors(c =>
             {
-                c.AddPolicy("Alloworigin", options => options.AllowAnyOrigin().AllowAnyMethod()
+                c.AddPolicy("AllowOrigin", options => 
+                    options.AllowAnyOrigin().
+                    AllowAnyMethod()
                 .AllowAnyHeader());
+            });
+            // add JWT Support 
+            services.AddAuthentication(opt => {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                  options.TokenValidationParameters = new TokenValidationParameters
+                  {
+                      ValidateIssuer = true,
+                      ValidateAudience = true,
+                      ValidateLifetime = true,
+                      ValidateIssuerSigningKey = true,
+                      ValidIssuer = "http://localhost:5000",
+                      ValidAudience = "http://localhost:5000",
+                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
+                  };
             });
             //JSON Serializer
             services.AddControllersWithViews()
@@ -51,11 +74,15 @@ namespace BackyardGarden.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseCors();
+            app.UseCors("AllowOrigin");
+
+
+            app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

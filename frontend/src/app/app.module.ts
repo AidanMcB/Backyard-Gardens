@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -12,6 +12,7 @@ import { LoginComponent } from './components/Login/login.component';
 import { IvyCarouselModule} from 'angular-responsive-carousel'; 
 import { DataService } from './data.service';
 import { WeatherService } from './components/Weather/weather.service';
+import { UserService } from './components/Login/user.service';
 
 const routes: Routes = [
   {path: 'homepage', component: HomepageComponent},
@@ -33,9 +34,11 @@ const routes: Routes = [
     IvyCarouselModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     DataService,
+    UserService,
     WeatherService
   ],
   bootstrap: [AppComponent]

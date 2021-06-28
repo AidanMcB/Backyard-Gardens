@@ -1,12 +1,15 @@
 <h2>Login</h2>
 <div class='login-modal-wrapper'>
-    <form class='login-form' [formGroup]='loginForm'>
+    <form class='login-form' #loginForm='ngForm' [formGroup]='form' (ngSubmit)='login(loginForm)'>
+        <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
         <label>Name:</label>
         <input for='name' type='text'>
         <label>Password:</label>
         <input for='password' type='text'>
-        <button type='submit' (click)="submit($event)">Login</button>
+        <button type='submit'>Login</button>
     </form>
+    <br/><br/>
+    <button (click)="callApi()">Call API</button>
 
-    <!-- <button (click)="logData()">data button</button> -->
+    <button (click)="logData()">data button</button>
 </div>

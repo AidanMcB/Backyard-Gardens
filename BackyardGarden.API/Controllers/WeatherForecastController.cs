@@ -24,7 +24,7 @@ namespace BackyardGarden.API.Controllers
             _logger = logger;
         }
 
-        [EnableCors("CorsPolicy")]
+        [EnableCors("AllowOrigin")]
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
