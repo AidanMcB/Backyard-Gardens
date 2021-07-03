@@ -11,9 +11,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Serialization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace BackyardGarden.API
 {
@@ -37,6 +38,7 @@ namespace BackyardGarden.API
                     AllowAnyMethod()
                 .AllowAnyHeader());
             });
+
             //JSON Serializer
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
@@ -44,25 +46,29 @@ namespace BackyardGarden.API
                .Json.ReferenceLoopHandling.Ignore)
                 .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver
                = new DefaultContractResolver());
-            // add JWT Support 
-            services.AddAuthentication(opt => {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-               // opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
+
+            //JWT
+            var key = "This is my test key";
+
+            services.AddAuthentication(x =>
             {
-                  options.TokenValidationParameters = new TokenValidationParameters
-                  {
-                      ValidateIssuer = true,
-                      ValidateAudience = true,
-                      ValidateLifetime = true,
-                      ValidateIssuerSigningKey = true,
-                      ValidIssuer = "http://localhost:5001",
-                      ValidAudience = "http://localhost:4200",
-                      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
-                  };
-            });
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                }
+            );
+
+            services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(key));
 
             services.AddControllers();
         }

@@ -1,5 +1,5 @@
 ﻿using BackyardGarden.API.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -35,7 +35,7 @@ namespace BackyardGarden.API.Controllers
         }
 
         // POST api/<AuthController>
-        [HttpPost, Route("login")]
+       /* [HttpPost, Route("login")]
         public IActionResult Login([FromBody] LoginModel user)
         {
             if(user == null)
@@ -70,6 +70,7 @@ namespace BackyardGarden.API.Controllers
             }
         
         }
+       */
 
         // PUT api/<AuthController>/5
         //[HttpPut("{id}")]

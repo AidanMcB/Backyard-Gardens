@@ -33,10 +33,10 @@ C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.
 C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.API\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
-C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
-C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\aidan\Desktop\Angular\personal-projects\backyard-garden\BackyardGarden.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
