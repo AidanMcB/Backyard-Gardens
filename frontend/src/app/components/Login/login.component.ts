@@ -6,6 +6,8 @@ import { passwordValidator, usernameValidator } from '../../shared/validators/lo
 import { WeatherService } from '../Weather/weather.service';
 import { Subscription } from 'rxjs';
 import { UserService } from './user.service';
+import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
     selector: 'login',
@@ -14,12 +16,13 @@ import { UserService } from './user.service';
 })
 
 export class LoginComponent implements OnInit, OnDestroy{
-    router: any;
 
     public constructor(
         private _dataService: DataService,
         private _userService: UserService,
-        private _weatherService: WeatherService
+        private _weatherService: WeatherService,
+        private _router: Router,
+        private _httpService: HttpClient
     ) {}
 
     title = 'login';
@@ -33,9 +36,25 @@ export class LoginComponent implements OnInit, OnDestroy{
 
     ngOnInit(): void {
         this.form = new FormGroup({
-            nameControl: new FormControl(this.username, [Validators.required, usernameValidator]),
-            passwordControl: new FormControl( this.password, passwordValidator)
+            usernameControl: new FormControl(this.username, [Validators.required, usernameValidator]),
+            passwordControl: new FormControl( this.password )
         })
+        
+    }
+
+    public getAllUsers(): void {
+        // this._userService.getAllUser().subscribe(users =>{
+        //     console.log(users)
+        // })
+        this._httpService.get("http://localhost:5000/api/auth", {
+            headers: new HttpHeaders({
+              "Content-Type": "application/json"
+            })
+          }).subscribe(response => {
+            console.log(response)
+          }, err => {
+            console.log(err)
+          });
         
     }
 
@@ -45,13 +64,17 @@ export class LoginComponent implements OnInit, OnDestroy{
         console.log(this.form)
     }
 
-    login(form: NgForm) {
-    this.loginSub = this._userService.loginUser(form).subscribe(response => {
-          const token = (<any>response).token;
-          localStorage.setItem("jwt", token);
+    public onSubmit() {
+    const formData: UserProfile = {
+        username: this.username,
+        password: this.password
+    }
+    this.loginSub = this._userService.loginUser(formData).subscribe( (response: any) => {
+          localStorage.setItem("jwt", response.Token);
           this.invalidLogin = false;
-          this.router.navigate(["/"]);
+          this._router.navigate(["/"]);
         }, err => {
+            console.log(err)
           this.invalidLogin = true;
         });
     }
@@ -71,8 +94,8 @@ export class LoginComponent implements OnInit, OnDestroy{
     }
 
     ngOnDestroy() {
-        this.sub.unsubscribe();
-        this.sub2.unsubscribe();
+        // this.sub.unsubscribe();
+        // this.sub2.unsubscribe();
         this.loginSub.unsubscribe();
     }
 }

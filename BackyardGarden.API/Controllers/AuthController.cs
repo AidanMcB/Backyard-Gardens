@@ -1,4 +1,6 @@
 ﻿using BackyardGarden.API.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -19,6 +21,7 @@ namespace BackyardGarden.API.Controllers
     {
         // GET: api/<AuthController>
         [HttpGet]
+        [Authorize]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
@@ -42,12 +45,19 @@ namespace BackyardGarden.API.Controllers
 
             if(user.UserName == "Aidan" && user.Password == "123")
             {
-                var secretKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Role, "Admin")
+                };
+
                 var tokeOptions = new JwtSecurityToken(
                     issuer: "https://localhost:5001",
-                    audience: "https://localhost:5001",
-                    claims: new List<Claim>(),
+                    audience: "https://localhost:4200",
+                    claims: claims,
                     expires: DateTime.Now.AddMinutes(5),
                     signingCredentials: signinCredentials
                 );

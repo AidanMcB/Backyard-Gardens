@@ -37,10 +37,18 @@ namespace BackyardGarden.API
                     AllowAnyMethod()
                 .AllowAnyHeader());
             });
+            //JSON Serializer
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+               options.SerializerSettings.ReferenceLoopHandling = Newtonsoft
+               .Json.ReferenceLoopHandling.Ignore)
+                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver
+               = new DefaultContractResolver());
             // add JWT Support 
             services.AddAuthentication(opt => {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+               // opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
             .AddJwtBearer(options =>
             {
@@ -50,18 +58,11 @@ namespace BackyardGarden.API
                       ValidateAudience = true,
                       ValidateLifetime = true,
                       ValidateIssuerSigningKey = true,
-                      ValidIssuer = "http://localhost:5000",
-                      ValidAudience = "http://localhost:5000",
+                      ValidIssuer = "http://localhost:5001",
+                      ValidAudience = "http://localhost:4200",
                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
                   };
             });
-            //JSON Serializer
-            services.AddControllersWithViews()
-                .AddNewtonsoftJson(options =>
-               options.SerializerSettings.ReferenceLoopHandling = Newtonsoft
-               .Json.ReferenceLoopHandling.Ignore)
-                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver
-               = new DefaultContractResolver());
 
             services.AddControllers();
         }
