@@ -15,6 +15,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using BackyardGarden.API.Datas;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackyardGarden.API
 {
@@ -69,6 +72,9 @@ namespace BackyardGarden.API
             );
 
             services.AddSingleton<IJwtAuthenticationManager>(new JwtAuthenticationManager(key));
+            // Identity Server
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<DataContext>();
 
             services.AddControllers();
         }

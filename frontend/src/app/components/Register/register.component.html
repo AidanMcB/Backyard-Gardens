@@ -1,0 +1,22 @@
+<div class="login-wrapper">
+    <form class="login" #loginForm (ngSubmit)="onSubmit()">
+        <section class="title">
+            <h3 class="welcome">Welcome to</h3>
+            Your angular app
+            <h5 class="hint">Create a new account</h5>
+        </section>
+        <div class="login-group">
+            <div>
+                <input type="text" name="username"  placeholder="User name" [(ngModel)]="username" />
+            </div>
+            <div>
+                <input type="password" name="password"  placeholder="Password" [(ngModel)]="password" />
+            </div>
+            <div class="error active" *ngFor="let error of errors">
+                {{error}}
+            </div>
+            <button type="submit" class="btn btn-primary">NEXT</button>
+            <a href="" class="signup">Log in</a>
+        </div>
+    </form>
+  </div>

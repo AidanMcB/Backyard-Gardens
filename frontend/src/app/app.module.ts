@@ -17,8 +17,13 @@ import { UserService } from './components/Login/user.service';
 import { TopNavComponent } from './components/TopNav/top-nav.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './components/Gaurds/auth-gaurd.component';
+import { RegisterComponent } from './components/Register/register.component';
 
 const routes: Routes = [
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
   {path: 'homepage', component: HomepageComponent},
   {path: '', redirectTo: '/homepage', pathMatch: 'full'},
   {path: 'weather', component: WeatherComponent, canActivate: [AuthGuard]},
@@ -37,8 +42,10 @@ export function tokenGetter() {
     LoginComponent,
     WeatherComponent,
     TopNavComponent,
+    RegisterComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     IvyCarouselModule,
     RouterModule.forRoot(routes),
