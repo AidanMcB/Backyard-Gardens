@@ -32,11 +32,13 @@ export class RegisterComponent implements OnInit {
     this.errors = [];
     this.authentication.register(this.username, this.password).subscribe(() => {
     }, (error: HttpErrorResponse) => {
+        console.log(error.error)
       if (error.error instanceof Array) {
         this.errors = error.error.map(m => m.description);
       }
       else {
         this.errors = [error.error.message];
+        console.log(this.errors)
       }
     //   this.loginState = ClrLoadingState.ERROR;
     });
