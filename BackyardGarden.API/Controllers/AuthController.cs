@@ -1,6 +1,7 @@
 ﻿using BackyardGarden.API.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -19,6 +20,19 @@ namespace BackyardGarden.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+
+        public AuthController(
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager
+        )
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
+
+
         // GET: api/<AuthController>
         [HttpGet]
         [Authorize]
@@ -35,15 +49,17 @@ namespace BackyardGarden.API.Controllers
         }
 
         // POST api/<AuthController>
-       /* [HttpPost, Route("login")]
-        public IActionResult Login([FromBody] LoginModel user)
+        [HttpPost, Route("login")]
+        public async Task<IActionResult> Login([FromBody] LoginModel user)
         {
             if(user == null)
             {
                 return BadRequest("Invalid client request");
             }
+            var result = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, false, false);
+            // var result = await _userManager.FindByLoginAsync(user)
 
-            if(user.UserName == "Aidan" && user.Password == "123")
+            if (result.Succeeded)
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -70,7 +86,13 @@ namespace BackyardGarden.API.Controllers
             }
         
         }
-       */
+        [HttpPost, Route("logOut")]
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return null;
+        }
+
 
         // PUT api/<AuthController>/5
         //[HttpPut("{id}")]

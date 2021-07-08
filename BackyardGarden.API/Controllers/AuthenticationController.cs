@@ -48,7 +48,8 @@ namespace BackyardGarden.API.Controllers
 
             var user = new IdentityUser
             {
-                UserName = request.UserName
+                UserName = request.UserName,
+                Email = request.Email
             };
 
             var result = await _userManager.CreateAsync(user, request.Password);
@@ -77,6 +78,8 @@ namespace BackyardGarden.API.Controllers
         {
             public String UserName { get; set; }
             public String Password { get; set; }
+
+            public String Email { get; set; }
         }
 
     }

@@ -10,6 +10,9 @@
                 <input type="text" name="username"  placeholder="User name" [(ngModel)]="username" />
             </div>
             <div>
+                <input type="text" name="email"  placeholder="someone@example.com" [(ngModel)]="email" />
+            </div>
+            <div>
                 <input type="password" name="password"  placeholder="Password" [(ngModel)]="password" />
             </div>
             <div class="error active" *ngFor="let error of errors">

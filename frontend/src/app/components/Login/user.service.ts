@@ -22,6 +22,14 @@ export class UserService {
     })
   }
 
+  public logout() {
+    return this.httpClient.post(`https://localhost:5001/api/auth/logOut`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+  }
+
   public getAllUser() {
     return this.httpClient.get(`https://localhost:5001/api/auth/`, {
       headers: new HttpHeaders({
