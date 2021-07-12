@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BackyardGarden.API.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,17 @@ namespace BackyardGarden.API.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AuthenticationController(UserManager<IdentityUser> userManager)
+
+        public AuthenticationController(
+            UserManager<ApplicationUser> userManager,
+         SignInManager<ApplicationUser> signInManager
+        )
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
         // GET: api/<AuthenticationController>
         [HttpGet]
@@ -46,16 +53,19 @@ namespace BackyardGarden.API.Controllers
                 return BadRequest();
             }
 
-            var user = new IdentityUser
+            var user = new ApplicationUser
             {
                 UserName = request.UserName,
-                Email = request.Email
+                Email = request.Email,
+                City = request.City,
             };
 
             var result = await _userManager.CreateAsync(user, request.Password);
 
             if (result.Succeeded)
             {
+                //false persistent indicates temporary session(ends with browser close)
+                await _signInManager.SignInAsync(user, isPersistent: false);
                 return Ok();
             }
 
@@ -78,8 +88,8 @@ namespace BackyardGarden.API.Controllers
         {
             public String UserName { get; set; }
             public String Password { get; set; }
-
             public String Email { get; set; }
+            public String City { get; set; }
         }
 
     }

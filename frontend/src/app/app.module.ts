@@ -18,6 +18,8 @@ import { TopNavComponent } from './components/TopNav/top-nav.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './components/Gaurds/auth-gaurd.component';
 import { RegisterComponent } from './components/Register/register.component';
+import { GardenComponent } from './components/Garden/garden.component';
+import { GardenService } from './components/Garden/garden.service';
 
 const routes: Routes = [
   {
@@ -28,6 +30,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/homepage', pathMatch: 'full'},
   {path: 'weather', component: WeatherComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
+  {path: 'garden', component: GardenComponent}
 ];
 
 export function tokenGetter() {
@@ -38,6 +41,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
+    GardenComponent,
     HomepageComponent,
     LoginComponent,
     WeatherComponent,
@@ -62,7 +66,8 @@ export function tokenGetter() {
   providers: [
     DataService,
     UserService,
-    WeatherService
+    WeatherService,
+    GardenService
   ],
   bootstrap: [AppComponent]
 })

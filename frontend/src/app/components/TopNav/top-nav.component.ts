@@ -11,23 +11,30 @@ import { UserService } from "../Login/user.service";
 })
 
 export class TopNavComponent {
+
+    public loggedInUserName: string; 
+
     constructor(
         private authentication: AuthenticationService, 
         private _userService: UserService,
-        private router: Router) { }
+        private router: Router
+    ) {}
 
+    public ngOnInit(): void {
+        localStorage.getItem('userName') != null ? this.loggedInUserName = localStorage.getItem('userName') : null;
+    }
 
     public logout(): void {
-        localStorage.removeItem("jwt");
+        localStorage.clear();
         this._userService.logout().subscribe((res) => {
-            console.log(res)
+            localStorage.clear();
         }, (err) => console.log(err))
     }
 
     public user(): void {
-        // let x  = localStorage.getItem("jwt")
-        // localStorage.setItem("this", "thakjhkjhvkt")
-        let x = localStorage.getItem("jwt")
-        console.log(x);
+        console.log(localStorage)
+        this._userService.getCurrentUser().subscribe((res) => {
+            console.log(res)
+        }, (err) => console.log(err))
     }
 }

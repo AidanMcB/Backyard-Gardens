@@ -43,5 +43,10 @@ export class UserService {
     .get('https://localhost:5001/api/garden')
   }
 
+  public getCurrentUser() {
+    return this.httpClient
+    .get('https://localhost:5001/api/auth/getUser')
+  }
+
 }
 

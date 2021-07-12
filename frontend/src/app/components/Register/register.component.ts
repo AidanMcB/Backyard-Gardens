@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   public username: string;
   public email: string;
   public password: string;
+  public city: string;
   public errors: string[];
   public returnUrl: string;
   public formData: RegistrationForm;
@@ -45,7 +46,8 @@ export class RegisterComponent implements OnInit {
     this.formData = {
       username: this.username,
       email: this.email,
-      password: this.password
+      password: this.password,
+      city: this.city
     }
   }
 }

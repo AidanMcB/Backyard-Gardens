@@ -18,7 +18,10 @@
             <div class="error active" *ngFor="let error of errors">
                 {{error}}
             </div>
-            <button type="submit" class="btn btn-primary">NEXT</button>
+            <div>
+                <input type="text" name="city"  placeholder="City" [(ngModel)]="city" />
+            </div>
+            <button type="submit" class="btn btn-primary">Register User</button>
             <a href="" class="signup">Log in</a>
         </div>
     </form>

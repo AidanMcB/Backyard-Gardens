@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { UserProfile } from './user.interfaces';
 import { DataService } from '../../data.service';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
@@ -16,7 +16,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 
 export class LoginComponent implements OnInit, OnDestroy{
-
+    
     public constructor(
         private _dataService: DataService,
         private _userService: UserService,
@@ -58,19 +58,15 @@ export class LoginComponent implements OnInit, OnDestroy{
         
     }
 
-    public submit(e): void {
-        e.preventDefault();
-        // this.formData = formData
-        console.log(this.form)
-    }
-
     public onSubmit() {
     const formData: UserProfile = {
         username: this.username,
         password: this.password
     }
     this.loginSub = this._userService.loginUser(formData).subscribe( (response: any) => {
+        console.log('Response from login: ', response)
           localStorage.setItem("jwt", response.Token);
+          this._setUserObjectInLocalStorage(response);
           this.invalidLogin = false;
           this._router.navigate(["/"]);
         }, err => {
@@ -80,22 +76,27 @@ export class LoginComponent implements OnInit, OnDestroy{
     }
 
     callApi() {
-        this.sub = this._weatherService.getWeather().subscribe( weather => console.log(weather));
+        console.log(localStorage.userId)
+        //this.sub = this._weatherService.getWeather().subscribe( weather => console.log(weather));
     }
 
     public logData(): void {
         this.sub2 = this._weatherService.getGarden().subscribe(garden => console.log(garden))
-        
-        // this._dataService.getPosts().subscribe( 
-        //     (posts) => {
-        //         console.log(posts);
-        //     }
-        // )
     }
 
     ngOnDestroy() {
-        // this.sub.unsubscribe();
-        // this.sub2.unsubscribe();
         this.loginSub.unsubscribe();
+    }
+
+    private _setUserObjectInLocalStorage(loginResponse) {
+        let userObj = loginResponse.user;
+        Object.keys(userObj).map(function(key, index) {
+            key == 'Id' ? localStorage.setItem("userId", userObj[key].toString()) :
+            key == 'UserName' ? localStorage.setItem("userName", userObj[key].toString()) :
+            userObj[key] != null ?
+            localStorage.setItem(`${key}`, userObj[key].toString())
+            : null;
+        });
+
     }
 }

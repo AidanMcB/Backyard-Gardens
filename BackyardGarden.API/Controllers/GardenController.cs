@@ -50,13 +50,20 @@ namespace BackyardGarden.API.Controllers
             return new JsonResult(table);
         }
 
-        [HttpPost]
+        [HttpPost, Route("CreateNewGarden")]
         [EnableCors("AllowOrigin")]
-        public JsonResult Post(Garden dep)
+
+        public IActionResult CreateNewGarden([FromBody] Garden dep)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             string query = @"
                 insert into dbo.Garden values
-                 ('" + dep.GardenName + @"')
+                 ('" + dep.GardenName + @",
+                    " + dep.GardenId + @",
+                    " + dep.UserId + @")
                 ";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("BackyardGardenCon");
